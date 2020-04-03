@@ -26,7 +26,7 @@ def mat_demo():
     col,row,ch = greenROI.shape
     blueROI = greenROI[40:col-40,20:row-20]
     blueROI[:,:] = (255,0,0)
-    cv2.imshow(wName,im)
+    cv2.imshow(wName,im) 
     cBlueROI = blueROI.copy()
     cv2.waitKey(500)
     im[:,125:165]=(255,255,0)
@@ -34,17 +34,15 @@ def mat_demo():
     cv2.imshow(wName,im)
     cv2.waitKey(500)
     cv2.waitKey(0)
-    cv2.destroyWindow(wName);
-
-    cv2.imshow("redROI",redROI);
-    cv2.imshow("Clone of redROI",cRedROI);
-    cv2.waitKey(0);
-    cv2.destroyAllWindows();
-
-    cv2.imshow("blueROI",blueROI);
-    cv2.imshow("Copy of blueROI",cBlueROI);
-    cv2.waitKey(0);
-    cv2.destroyAllWindows();
+    cv2.destroyWindow(wName)
+    cv2.imshow("redROI",redROI)
+    cv2.imshow("Clone of redROI",cRedROI)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    cv2.imshow("blueROI",blueROI)
+    cv2.imshow("Copy of blueROI",cBlueROI)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
 def drawing_demo():
@@ -69,8 +67,8 @@ def drawing_demo():
         px2 = px1+40
         py2 = py1+40
         cv2.rectangle(tImg,(px1,py1),(px2,py2),(255,255,0),8)
-        cv2.imshow(wName,tImg);
-        cv2.waitKey(3);
+        cv2.imshow(wName,tImg)
+        cv2.waitKey(3)
         tImg = bImg.copy()
 
     cv2.waitKey(0)
@@ -80,7 +78,7 @@ def pixel_demo():
 	wName="Pixel Demo"
 	print(wName)
 
-	bImg=cv2.imread("../datas/ebru.bmp");
+	bImg=cv2.imread("../datas/ebru.bmp")
 	tImg=bImg.copy()
 	nRows,nCols,_ = bImg.shape
 
@@ -92,14 +90,14 @@ def pixel_demo():
 			else:
 				bImg[y,x] = (0,0,0)
 
-	cv2.imshow(wName,tImg);
-	cv2.imshow(wName+'Transformed',bImg);
-	cv2.waitKey(0);
+	cv2.imshow(wName,tImg)
+	cv2.imshow(wName+'Transformed',bImg)
+	cv2.waitKey(0)
 	cv2.destroyAllWindows()
 
 def main():
-    mat_demo()
-    drawing_demo()
+    #mat_demo()
+    #drawing_demo()
     pixel_demo()
 
 
