@@ -8,43 +8,43 @@
 # WARNING! All changes made in this file will be lost!
 import cv2
 import sys
-from PySide import QtCore, QtGui
+from PySide2 import QtCore, QtGui, QtWidgets
 import numpy as np
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(1005, 556)
-        self.sourcePanel = QtGui.QLabel(Dialog)
+        self.sourcePanel = QtWidgets.QLabel(Dialog)
         self.sourcePanel.setGeometry(QtCore.QRect(20, 80, 480, 360))
-        self.sourcePanel.setFrameShape(QtGui.QFrame.Panel)
+        self.sourcePanel.setFrameShape(QtWidgets.QFrame.Panel)
         self.sourcePanel.setText("")
         self.sourcePanel.setObjectName("sourcePanel")
-        self.filteredPanel = QtGui.QLabel(Dialog)
+        self.filteredPanel = QtWidgets.QLabel(Dialog)
         self.filteredPanel.setGeometry(QtCore.QRect(510, 80, 480, 360))
-        self.filteredPanel.setFrameShape(QtGui.QFrame.Panel)
+        self.filteredPanel.setFrameShape(QtWidgets.QFrame.Panel)
         self.filteredPanel.setText("")
         self.filteredPanel.setObjectName("filteredPanel")
-        self.pushButtonLoad = QtGui.QPushButton(Dialog)
+        self.pushButtonLoad = QtWidgets.QPushButton(Dialog)
         self.pushButtonLoad.setGeometry(QtCore.QRect(470, 20, 31, 21))
         self.pushButtonLoad.setObjectName("pushButtonLoad")
-        self.label_CName_3 = QtGui.QLabel(Dialog)
+        self.label_CName_3 = QtWidgets.QLabel(Dialog)
         self.label_CName_3.setGeometry(QtCore.QRect(20, 50, 241, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_CName_3.setFont(font)
         self.label_CName_3.setObjectName("label_CName_3")
-        self.imageName = QtGui.QLineEdit(Dialog)
+        self.imageName = QtWidgets.QLineEdit(Dialog)
         self.imageName.setGeometry(QtCore.QRect(20, 20, 441, 20))
         self.imageName.setText("")
         self.imageName.setObjectName("imageName")
-        self.label_CName_4 = QtGui.QLabel(Dialog)
+        self.label_CName_4 = QtWidgets.QLabel(Dialog)
         self.label_CName_4.setGeometry(QtCore.QRect(510, 50, 241, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_CName_4.setFont(font)
         self.label_CName_4.setObjectName("label_CName_4")
-        self.comboBoxFilterNames = QtGui.QComboBox(Dialog)
+        self.comboBoxFilterNames = QtWidgets.QComboBox(Dialog)
         self.comboBoxFilterNames.setGeometry(QtCore.QRect(110, 460, 391, 22))
         self.comboBoxFilterNames.setObjectName("comboBoxFilterNames")
         self.comboBoxFilterNames.addItem("")
@@ -61,19 +61,19 @@ class Ui_Dialog(object):
         self.comboBoxFilterNames.addItem("")
         self.comboBoxFilterNames.addItem("")
         self.comboBoxFilterNames.addItem("")
-        self.label_CName_5 = QtGui.QLabel(Dialog)
+        self.label_CName_5 = QtWidgets.QLabel(Dialog)
         self.label_CName_5.setGeometry(QtCore.QRect(30, 460, 61, 20))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_CName_5.setFont(font)
         self.label_CName_5.setObjectName("label_CName_5")
-        self.pushButtonApply = QtGui.QPushButton(Dialog)
+        self.pushButtonApply = QtWidgets.QPushButton(Dialog)
         self.pushButtonApply.setGeometry(QtCore.QRect(404, 500, 91, 23))
         self.pushButtonApply.setObjectName("pushButtonApply")
-        self.pushButtonSendToOrj = QtGui.QPushButton(Dialog)
+        self.pushButtonSendToOrj = QtWidgets.QPushButton(Dialog)
         self.pushButtonSendToOrj.setGeometry(QtCore.QRect(530, 460, 161, 23))
         self.pushButtonSendToOrj.setObjectName("pushButtonSendToOrj")
-        self.pushButtonSave = QtGui.QPushButton(Dialog)
+        self.pushButtonSave = QtWidgets.QPushButton(Dialog)
         self.pushButtonSave.setGeometry(QtCore.QRect(710, 460, 101, 21))
         self.pushButtonSave.setObjectName("pushButtonSave")
 
@@ -93,32 +93,32 @@ class Ui_Dialog(object):
 
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "Filtre Demo", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonLoad.setText(QtGui.QApplication.translate("Dialog", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_CName_3.setText(QtGui.QApplication.translate("Dialog", "Orjinal Görüntü", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_CName_4.setText(QtGui.QApplication.translate("Dialog", "Filitrelenmiş  Görüntü", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(0, QtGui.QApplication.translate("Dialog", "filter2D", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(1, QtGui.QApplication.translate("Dialog", "boxFilter", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(2, QtGui.QApplication.translate("Dialog", "bilateralFilter", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(3, QtGui.QApplication.translate("Dialog", "blur", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(4, QtGui.QApplication.translate("Dialog", "GaussianBlur", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(5, QtGui.QApplication.translate("Dialog", "medianBlur", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(6, QtGui.QApplication.translate("Dialog", "sepFilter2D", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(7, QtGui.QApplication.translate("Dialog", "Laplacian", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(8, QtGui.QApplication.translate("Dialog", "Sobel", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(9, QtGui.QApplication.translate("Dialog", "Scharr", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(10, QtGui.QApplication.translate("Dialog", "Canny", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(11, QtGui.QApplication.translate("Dialog", "pyrMeanShiftFiltering", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(12, QtGui.QApplication.translate("Dialog", "threshold", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxFilterNames.setItemText(13, QtGui.QApplication.translate("Dialog", "adaptiveThreshold", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_CName_5.setText(QtGui.QApplication.translate("Dialog", " Fitreler :", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonApply.setText(QtGui.QApplication.translate("Dialog", "Uygula", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonSendToOrj.setText(QtGui.QApplication.translate("Dialog", "Orjinal Görüntüye Aktar", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonSave.setText(QtGui.QApplication.translate("Dialog", "Kaydet", None, QtGui.QApplication.UnicodeUTF8))
+        Dialog.setWindowTitle(QtWidgets.QApplication.translate("Dialog", "Filtre Demo", None))
+        self.pushButtonLoad.setText(QtWidgets.QApplication.translate("Dialog", "...", None))
+        self.label_CName_3.setText(QtWidgets.QApplication.translate("Dialog", "Orjinal Görüntü", None))
+        self.label_CName_4.setText(QtWidgets.QApplication.translate("Dialog", "Filitrelenmiş  Görüntü", None))
+        self.comboBoxFilterNames.setItemText(0, QtWidgets.QApplication.translate("Dialog", "filter2D", None))
+        self.comboBoxFilterNames.setItemText(1, QtWidgets.QApplication.translate("Dialog", "boxFilter", None))
+        self.comboBoxFilterNames.setItemText(2, QtWidgets.QApplication.translate("Dialog", "bilateralFilter", None))
+        self.comboBoxFilterNames.setItemText(3, QtWidgets.QApplication.translate("Dialog", "blur", None))
+        self.comboBoxFilterNames.setItemText(4, QtWidgets.QApplication.translate("Dialog", "GaussianBlur", None))
+        self.comboBoxFilterNames.setItemText(5, QtWidgets.QApplication.translate("Dialog", "medianBlur", None))
+        self.comboBoxFilterNames.setItemText(6, QtWidgets.QApplication.translate("Dialog", "sepFilter2D", None))
+        self.comboBoxFilterNames.setItemText(7, QtWidgets.QApplication.translate("Dialog", "Laplacian", None))
+        self.comboBoxFilterNames.setItemText(8, QtWidgets.QApplication.translate("Dialog", "Sobel", None))
+        self.comboBoxFilterNames.setItemText(9, QtWidgets.QApplication.translate("Dialog", "Scharr", None))
+        self.comboBoxFilterNames.setItemText(10, QtWidgets.QApplication.translate("Dialog", "Canny", None))
+        self.comboBoxFilterNames.setItemText(11, QtWidgets.QApplication.translate("Dialog", "pyrMeanShiftFiltering", None))
+        self.comboBoxFilterNames.setItemText(12, QtWidgets.QApplication.translate("Dialog", "threshold", None))
+        self.comboBoxFilterNames.setItemText(13, QtWidgets.QApplication.translate("Dialog", "adaptiveThreshold", None))
+        self.label_CName_5.setText(QtWidgets.QApplication.translate("Dialog", " Fitreler :", None))
+        self.pushButtonApply.setText(QtWidgets.QApplication.translate("Dialog", "Uygula", None))
+        self.pushButtonSendToOrj.setText(QtWidgets.QApplication.translate("Dialog", "Orjinal Görüntüye Aktar", None))
+        self.pushButtonSave.setText(QtWidgets.QApplication.translate("Dialog", "Kaydet", None))
 
         # Events
     def selectFile(self):
-        fileName = QtGui.QFileDialog.getOpenFileName(Dialog, "Open Image", "..", "Image Files (*.png *.jpg *.bmp)")
+        fileName = QtWidgets.QFileDialog.getOpenFileName(Dialog, "Open Image", "..", "Image Files (*.png *.jpg *.bmp)")
         self.imageName.setText(fileName[0])
         self.fileName = fileName[0]
         self.load_Img()
@@ -225,7 +225,7 @@ class Ui_Dialog(object):
             self.showImg(self.sourcePanel,self.img)
 
     def on_Save(self):
-        fileName = QtGui.QFileDialog.getSaveFileName(Dialog, "Filtrelenmiş Görüntüyü Kaydet", "..", "Image Files (*.png *.jpg *.bmp)")
+        fileName = QtWidgets.QFileDialog.getSaveFileName(Dialog, "Filtrelenmiş Görüntüyü Kaydet", "..", "Image Files (*.png *.jpg *.bmp)")
         if fileName[0] !='' :
             cv2.imwrite(fileName[0],self.out_image)
 
@@ -233,10 +233,10 @@ class Ui_Dialog(object):
 
 
 # Create the Qt Application
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 # Create and show the form
 form = Ui_Dialog()
-Dialog = QtGui.QDialog()
+Dialog = QtWidgets.QDialog()
 form.setupUi(Dialog)
 Dialog.show()
 # Run the main Qt loop

@@ -7,7 +7,7 @@ import math
 
 def resize_demo():
 	wName = "Resize Demo "
-	print wName," : Press  + or - to resize "
+	print(wName+" : Press  + or - to resize ")
 	oImg = cv2.imread("../datas/manzara.jpg")
 	cv2.imshow(wName,oImg)
 	fx=1
@@ -21,8 +21,8 @@ def resize_demo():
 			fx=fx*1.1
 			fy=fy*1.1
 		elif key == ord('-'):
-			fx=fx*0.9;
-			fy=fy*0.9;
+			fx=fx*0.9
+			fy=fy*0.9
 		elif key == 27:
 			break		
 		else:
@@ -30,14 +30,14 @@ def resize_demo():
 			
 		outImg = cv2.resize(oImg,None,fx=fx,fy=fy)
 		cv2.imshow(wName,outImg)
-		print "New size of image {}".format((outImg.shape[0],outImg.shape[1]))	
+		print("New size of image {}".format((outImg.shape[0],outImg.shape[1])))
 
 	cv2.destroyWindow(wName)
 
 	
 def rotation_demo():
 	wName = "Rotation Demo  "
-	print wName," : Press + or - for Rotation Angel * or / for scale "
+	print(wName," : Press + or - for Rotation Angel * or / for scale ")
 	oImg = cv2.imread("../datas/manzara.jpg")
 	cv2.imshow(wName,oImg)
 
@@ -69,22 +69,22 @@ def rotation_demo():
 		rotationMat = cv2.getRotationMatrix2D((oImg.shape[1]/2,oImg.shape[0]/2),rAngle,scale)
 		outImg  = cv2.warpAffine(oImg,rotationMat,(oImg.shape[1],oImg.shape[0]))
 		cv2.imshow(wName,outImg)
-		print rAngle
+		print(str(rAngle))
 		
 	cv2.destroyWindow(wName)
-			
+	
 def affine_transform_demo():
 	wName = "Affine Transform Demo "
-	print wName," count "
+	print(wName+" count ")
 	oImg = cv2.imread("../datas/RLetters.png")
 	cv2.imshow(wName,oImg)	
-	print "Gray Scale "
+	print("Gray Scale ")
 	cv2.waitKey(0)
 	tImg = cv2.cvtColor(oImg,cv2.COLOR_BGR2GRAY)
 	_,tImg = cv2.threshold(tImg,200,255,cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
 	cv2.imshow(wName,tImg)
 	cv2.waitKey(0)	
-	image, contours, hierarchy = cv2.findContours(tImg,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+	contours, hierarchy = cv2.findContours(tImg,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
 	out_image = np.zeros((oImg.shape[0],oImg.shape[1],3),np.uint8)
 	destCorners = np.float32([[0,63],[0,0],[63,0]])
 	for cnt in contours:
@@ -105,7 +105,7 @@ def affine_transform_demo():
 
 def perspective_transform_demo():  
 	wName="Perspective Transform Demo"
-	print wName
+	print(wName)
 	vFileName ="../datas/TomAndJerry.mp4"
 	vCap= cv2.VideoCapture(vFileName)
 	height = vCap.get(cv2.CAP_PROP_FRAME_HEIGHT)
@@ -144,7 +144,7 @@ def perspective_transform_demo():
 	
 
 if __name__ == '__main__':
-	print "Ders 7 Geometric Transformations "
+	print("Ders 7 Geometric Transformations ")
 	resize_demo()
 	rotation_demo()
 	affine_transform_demo()

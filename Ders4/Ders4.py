@@ -54,7 +54,7 @@ def morpholoji_shape_demo():
     dst = cv2.morphologyEx( zImg, cv2.MORPH_ERODE, element,iterations=9)
     dst = cv2.morphologyEx( dst, cv2.MORPH_DILATE, element,iterations=9)
     cv2.imshow("MORPH_ELLIPSE Erode + Dialte", dst);
-    cv2.waitKey(0);
+    cv2.waitKey(0)
     cv2.destroyAllWindows()
     return
 
@@ -71,7 +71,7 @@ def track_bar_func(it):
     print(it,opTypes[tImg[1]])
     element = cv2.getStructuringElement( cv2.MORPH_ELLIPSE , ( 3, 3 ))
     dest = cv2.morphologyEx(tImg[0], opTypes[tImg[1]], element,iterations=it)
-    cv2.imshow(wName,dest);
+    cv2.imshow(wName,dest)
     return
 
 def main():

@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import a
 
 def area_demo():
     lst = []
@@ -10,26 +11,26 @@ def area_demo():
     lst.append([5,4])
     cnt = np.array(lst)
     area = cv2.contourArea(cnt)
-    print "Contour : ",lst
-    print "Contour Area : ", area
+    print("Contour : " + str(lst))
+    print ("Contour Area : " + str(area))
     return
 
 def seed_count():
-    wName = "Plam Seed "
-    print wName + " Count "
+    wName = "Palm Seed "
+    print(wName + " Count ")
     oImg = cv2.imread("../datas/palmseeds3.jpg",cv2.IMREAD_GRAYSCALE)
     cv2.namedWindow(wName)
     cv2.imshow(wName,oImg)
-    print " Shapes Gray Scale "
+    print(" Shapes Gray Scale ")
     cv2.waitKey(0)
     ret,tImg = cv2.threshold(oImg,200,255,cv2.THRESH_BINARY_INV|cv2.THRESH_OTSU)
     cv2.imshow(wName,tImg)
-    print " Shapes from Canny "
+    print(" Shapes from Canny ")
     cv2.waitKey(0)
-    image, contours, hierarchy = cv2.findContours(tImg,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+    contours, hierarchy = cv2.findContours(tImg,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
     out_image = np.zeros((oImg.shape[0],oImg.shape[1],3),np.uint8)
-    print " Number of contours : ",len(contours)
+    print(" Number of contours : ",len(contours))
     cv2.waitKey(0)
     i = 1
     for cnt in contours:
@@ -48,22 +49,22 @@ def seed_count():
     return
 
 def contour_demo():
-    wName = "Contour ";
-    print wName + " Shapes "
+    wName = "Contour "
+    print(wName + " Shapes ")
     oImg = cv2.imread("../datas/CShapes.png")
-    cv2.namedWindow(wName);
-    cv2.imshow(wName,oImg);
+    cv2.namedWindow(wName)
+    cv2.imshow(wName,oImg)
     cv2.waitKey(0)
-    print " Shapes Gray Scale "
+    print(" Shapes Gray Scale ")
     tImg = cv2.cvtColor(oImg, cv2.COLOR_BGR2GRAY)
-    cv2.imshow(wName,tImg);
+    cv2.imshow(wName,tImg)
     cv2.waitKey(0)
-    print " Shapes from Canny "
+    print(" Shapes from Canny ")
     tImg = cv2.Canny(oImg,120,190,5)
-    cv2.imshow(wName,tImg);
+    cv2.imshow(wName,tImg)
     cv2.waitKey(0)
-    image, contours, hierarchy = cv2.findContours(tImg,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
-    cv2.imshow(wName,image);
+    contours, hierarchy = cv2.findContours(tImg,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
+    cv2.imshow(wName,tImg)
     cv2.waitKey(0)
 
     #loop
@@ -72,33 +73,33 @@ def contour_demo():
     key = 0
     hierarchy = hierarchy[0]
     while True:
-		out_image = oImg.copy()
-		out_image = cv2.drawContours(out_image, [contours[i]], 0, (100,155,5), -1)
-		print_contour_info(contours[i],out_image,i,hierarchy[i])
-		cv2.imshow(wName,out_image)
-		key = cv2.waitKey(0)
-		res = key
-		print 'Key: ',key
-		if key == 27 :
-			break
-		if key == 2490368 or key == 8: # Up
-			j = 3
-		elif key == 2621440 or key == 13: # Down
-			j = 2
-		elif key == 2424832 or key == 32: # Left
-		#elif key == 2424832 : # Left
-			j = 1
-		elif key == 2555904 or key == 9: # Right
-			j = 0
-		else :
-			j = -1
+        out_image = oImg.copy()
+        out_image = cv2.drawContours(out_image, [contours[i]], 0, (100,155,5), -1)
+        print_contour_info(contours[i],out_image,i,hierarchy[i])
+        cv2.imshow(wName,out_image)
+        key = cv2.waitKey(0)
+        res = key
+        print('Key: ',key)
+        if key == 27 :
+            break
+        if key == 2490368 or key == 56: # Up
+            j = 3
+        elif key == 2621440 or key == 50: # Down
+            j = 2
+        elif key == 2424832 or key == 52: # Left
+        #elif key == 2424832 : # Left
+            j = 1
+        elif key == 2555904 or key == 54: # Right
+            j = 0
+        else :
+            j = -1
 
-		if j == -1 :
-			continue
+        if j == -1 :
+            continue
 
-		if hierarchy[i][j] != -1 :
-			i = hierarchy[i][j]
-		print i,' ', hierarchy[i]
+        if hierarchy[i][j] != -1 :
+            i = hierarchy[i][j]
+        print (str(i)+' '+str(hierarchy[i]))
 
     cv2.destroyWindow(wName)
 
@@ -128,21 +129,21 @@ def print_contour_info(cnt,out_image,i,hcnt):
     #Hu moments
     huM = cv2.HuMoments(M)
 
-    print 'Contour : ', i
-    print 'Area : ', area
-    print 'Hierarchy : ',hcnt
-    print " Minimum Enclosing Circle - Center : ", center , " Radius : " , radius
-    print " Bounding Rect : ", bRect
+    print('Contour : ' + str(i))
+    print('Area : ' + str(area))
+    print('Hierarchy : ' + str(hcnt))
+    print(" Minimum Enclosing Circle - Center : " + str(center) + " Radius : " + str(radius))
+    print(" Bounding Rect : " + str(bRect))
     size = (int(rRect[1][0]),int(rRect[1][1]))
-    print " Rotated Rect - Size :",size, " Angle : ",rRect[2]
-    print " Center of Mass : ",(cx,cy)
-    print " isConvex : ",cv2.isContourConvex(cnt)
-    print " Contour Perimeter : ",cv2.arcLength(cnt,True)
-    print " Moments \n "
+    print(" Rotated Rect - Size "+ str(size) + " Angle : " + str(rRect[2]))
+    print(" Center of Mass : ("+str(cx)+","+str(cy)+")")
+    print(" isConvex : " + str(cv2.isContourConvex(cnt)))
+    print(" Contour Perimeter : ",str(cv2.arcLength(cnt,True)))
+    print(" Moments \n ")
     for k in M.keys():
-        print "  ",k,' : ',M[k]
+        print("  "+str(k)+' : '+str(M[k]))
 
-    print " Hu Moments  : ",huM
+    print(" Hu Moments  : "+str(huM))
 
     return
 
@@ -152,6 +153,9 @@ def showHist(img):
     hist_h = cv2.calcHist( [h], [0], None, [180], [0, 180] )
     hist_s = cv2.calcHist( [s], [0], None, [255], [0, 255] )
     hist_v = cv2.calcHist( [v], [0], None, [255], [0, 255] )
+    hist_h = hist_h.reshape(hist_h.shape[0])
+    hist_s = hist_s.reshape(hist_s.shape[0])
+    hist_v = hist_v.reshape(hist_v.shape[0])
     plt.subplot(3,1,1)
     plt.title('Hue Histogram')
     x_pos = list(range(len(hist_h)))
@@ -170,7 +174,7 @@ def showHist(img):
 
 def histogram_demo():
     wName = "Histogram Demo "
-    print wName
+    print(wName)
     oImg=cv2.imread("../datas/manzara2.jpg")
     cv2.namedWindow(wName)
     cv2.imshow(wName,oImg)
@@ -188,9 +192,10 @@ def histogram_demo():
     cv2.destroyWindow(wName)
     return
 
+
 def line_detection_demo():
-    wName = "Line Detection Demo ";
-    print wName
+    wName = "Line Detection Demo "
+    print(wName)
     oImg=cv2.imread("../datas/optik.jpg")
     cv2.namedWindow(wName)
     cv2.imshow(wName,oImg)
@@ -204,18 +209,18 @@ def line_detection_demo():
     lines = cv2.HoughLinesP(tImg,1,np.pi/180,200,minLineLength,maxLineGap)
     lines = lines[:,0,:]
     i = 0
-    print lines.shape[0]," Lines detected "
+    print(str(lines.shape[0])+" Lines detected ")
     for l in lines:
         cv2.line(oImg,(l[0],l[1]),(l[2],l[3]),(0,0,255),2)
-        print i+1,") Starting Point : ",(l[0],l[1])," - Ending Point : ",(l[2],l[3])
+        print(str(i+1)+") Starting Point : ("+str(l[0])+","+str(l[1])+"), - Ending Point : ("+str(l[2])+","+str(l[3])+")")
         i +=1
     cv2.imshow(wName,oImg)
     cv2.waitKey(0)
     cv2.destroyWindow(wName)
 
 def circle_detection_demo():
-    wName = "Circle Detection Demo ";
-    print wName
+    wName = "Circle Detection Demo "
+    print(wName)
     oImg = cv2.imread("../datas/Currency.png")
     cv2.namedWindow(wName)
     cv2.imshow(wName,oImg)
@@ -233,7 +238,7 @@ def circle_detection_demo():
 
     currecyValuesStr = ["5 Krs" ,"25 Krs","1 TL" ]
 
-    print circles.shape[0]," Currecy detected "
+    print(str(circles.shape[0])+" Currecy detected ")
     i = 0
     for c in circles:
         cv2.circle(oImg,(c[0],c[1]),c[2],(0,0,255),2)
@@ -244,21 +249,19 @@ def circle_detection_demo():
         else:
             v = currecyValuesStr[0]
         cv2.putText(oImg,v,(c[0],c[1]),cv2.FONT_HERSHEY_COMPLEX_SMALL,1,(0,0,255),1)
-        print i+1," ) Currency ; Center : ",(c[0],c[1]), " -  Radius : ", c[2], " Value : ",v
+        print (str(i+1)+" ) Currency ; Center : ("+str(c[0])+","+str(c[1])+"), -  Radius : "+ str(c[2]) +" Value : "+str(v))
         i +=1
     cv2.imshow(wName,oImg)
     cv2.waitKey(0)
     cv2.destroyWindow(wName)
 
-
 def main():
-    print "Ders 6 Information Extraction "
-    #seed_count()
+    print("Ders 6 Information Extraction ")
+    seed_count()
     area_demo()
     contour_demo()
     histogram_demo()
     line_detection_demo()
     circle_detection_demo()
-
 
 main()

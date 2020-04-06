@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import math
 
 def drawBlobs(inImg,outImg):
-	image, contours, hierarchy = cv2.findContours(inImg,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+	contours, hierarchy = cv2.findContours(inImg,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
 	for cnt in contours:
 		(x,y),radius = cv2.minEnclosingCircle(cnt)
 		center = (int(x),int(y))
@@ -17,13 +17,13 @@ def drawBlobs(inImg,outImg):
 
 def FrameDiffDemo():
 	wName="Frame Diff  Demo "
-	print  wName
+	print(wName)
 	vFileName ="../datas/clip1.avi"
 
 	try:
 		vCap= cv2.VideoCapture(vFileName)
 	except:
-		print "Video File " + vFileName +" Not Opened ..."
+		print("Video File " + vFileName +" Not Opened ...")
 		return
 		
 	i = 0
@@ -66,7 +66,7 @@ def FrameDiffDemo():
 	
 def BackgroundSubDemo(methodName):
 	wName="BackgroundSub " + methodName +" Demo	"
-	print  wName		
+	print(wName)
 	if methodName == "MOG":
 		bsMethod = cv2.bgsegm.createBackgroundSubtractorMOG()
 	elif methodName == "MOG2":
@@ -78,14 +78,14 @@ def BackgroundSubDemo(methodName):
 	elif methodName == "CNT":
 		bsMethod = cv2.bgsegm.createBackgroundSubtractorCNT()			
 	else:
-		print 'Unknown Background Subtraction Method : ',methodName
+		print('Unknown Background Subtraction Method : '+methodName)
 		return
 		
 	vFileName ="../datas/clip1.avi"
 	try:
 		vCap= cv2.VideoCapture(vFileName)
 	except:
-		print "Video File " + vFileName +" Not Opened ..."
+		print("Video File " + vFileName +" Not Opened ...")
 		return
 		
 	i = 0
@@ -113,11 +113,11 @@ def BackgroundSubDemo(methodName):
 	cv2.destroyAllWindows()			
 
 if __name__ == '__main__':
-	print u"Ders 8 Arka plan silme "
+	print(u"Ders 8 Arka plan silme ")
 	methodNames = ["MOG2","KNN","MOG", "GMG","CNT"]
 	FrameDiffDemo()
 	for methodName in methodNames:
 		try:
 			BackgroundSubDemo(methodName)
 		except:
-			print 'Rebuild OpenCv with opencv_contrib'
+			print('Rebuild OpenCv with opencv_contrib')
